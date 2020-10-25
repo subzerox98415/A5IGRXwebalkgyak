@@ -1,4 +1,4 @@
-package com.meiit.webalk.reservation.domain;
+package reservation.domain;
 
 public class User {
 

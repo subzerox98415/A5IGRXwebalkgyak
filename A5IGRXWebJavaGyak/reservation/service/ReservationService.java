@@ -2,7 +2,7 @@ package reservation.service;
 
 import java.util.List;
 
-import com.meiit.webalk.reservation.domain.*;
+import reservation.domain.*;
 
 public interface ReservationService {
 
