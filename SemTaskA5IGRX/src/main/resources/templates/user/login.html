@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+ xmlns:th="http://www.thymeleaf.org">
+
+<head>
+ <title>Belépés</title>
+
+</head>
+<style>
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+body
+{
+ animation: 1s ease-out 0s 1 slideInFromLeft;
+  
+background-color:#b5b5b5;
+}
+
+ul {
+ animation: 1s ease-out 0s 1 slideInFromLeft;
+  
+  list-style-type: none;
+  width:50%;
+	border-radius:0 0 20px 20px;
+	
+    margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+
+}
+
+li {
+  float: left;
+    
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 30px 40px;
+  text-decoration: none;
+  transition: 0.7s;
+}
+
+
+
+li a:hover {
+  background-color: #eed520;
+  color:black;
+
+}
+
+.active {
+  background-color: #eed520;
+  Color:black;
+}
+#cont
+{
+width:90%;
+padding:70px;
+height:500px;
+background-color:#d8d8d8;
+margin:70px;
+border-radius:25px;
+}
+h2,h1
+{
+left:-50px;
+position:relative;
+	padding-left:70px;
+ animation: 1s ease-out 0s 1 slideInFromLeft;
+}
+
+hr
+{
+border:2px solid #ffe52d;
+width:50%;
+align:left;
+border-radius:50px;
+}
+p
+{
+padding:15px;
+}
+#input
+{
+padding:20px;
+border:2px solid #eed520;
+border-radius:15px;
+width:30%;
+margin:15px;
+
+}
+.btn {
+  background-color: black;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition: 0.7s;
+}
+
+.btn:hover {
+  background-color: #eed520;
+  border-radius:20px;
+  color: black;
+}
+</style>
+<body>
+<center>
+ <div class="container">
+  <div class="alert alert-danger" role="alert" th:if="${param.error}">
+   A jelszó téves
+  </div>
+        <form th:action="@{/login}" method="post" >
+          <h1>Belépés</h1>
+
+       <input type="email" id="input" name="email" class="form-control" placeholder="Email" required autofocus><br>
+
+       <input type="password" id="input" name="password" class="form-control" placeholder="Jelszó" required>
+       <div class="checkbox mb-3">
+         <label>
+           <input type="checkbox" name="remember-me" /><i> Megjegyzés</i>
+         </label>
+       </div>
+       <button class="btn btn-lg btn-primary btn-block" type="submit">Belépés</button>
+       <div class="margin-top20 text-center"> Ha nincs még felhasználód <a th:href="@{/signup}">Ide kattintva csinálhat</a></div>
+  </form>
+    </div>
+    </center>
+</body>
+</html>

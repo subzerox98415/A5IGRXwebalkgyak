@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Listázás</title>
+
+	
+</head>
+<style>
+body
+{
+font-size:20px;
+}
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+body
+{
+ animation: 1s ease-out 0s 1 slideInFromLeft;
+  
+background-color:#b5b5b5;
+}
+
+ul {
+ animation: 1s ease-out 0s 1 slideInFromLeft;
+  
+  list-style-type: none;
+  width:50%;
+	border-radius:0 0 20px 20px;
+	
+    margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+
+}
+
+li {
+  float: left;
+    
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 30px 40px;
+  text-decoration: none;
+  transition: 0.7s;
+}
+
+
+
+li a:hover {
+  background-color: #eed520;
+  color:black;
+
+}
+
+.active {
+  background-color: #eed520;
+  Color:black;
+}
+#cont
+{
+width:90%;
+padding:70px;
+height:500px;
+background-color:#d8d8d8;
+margin:70px;
+border-radius:25px;
+}
+h2,h1
+{
+left:-50px;
+position:relative;
+	padding-left:70px;
+ animation: 1s ease-out 0s 1 slideInFromLeft;
+}
+
+hr
+{
+border:2px solid #ffe52d;
+width:50%;
+align:left;
+border-radius:50px;
+}
+
+#input
+{
+padding:20px;
+border:2px solid #eed520;
+border-radius:15px;
+width:30%;
+margin:15px;
+
+}
+.btn {
+  background-color: black;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition: 0.7s;
+}
+
+.btn:hover {
+  background-color: #eed520;
+  border-radius:20px;
+  color: black;
+}
+table
+{
+table-layout: auto;
+width: 90%;  
+position:relative;
+border:2px solid #eed520;
+font-size:20px;
+}
+td
+{
+padding:20px;
+}
+th
+{
+padding:30px;
+
+}
+.btnnextprev {
+  background-color: black;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+  font-size: 10px;
+  margin: 4px 2px;
+  transition: 0.7s;
+}
+
+.btnnextprev:hover {
+  background-color: #eed520;
+  border-radius:20px;
+  color: black;
+}
+
+</style>
+<body>
+<center>
+<ul>
+  <li><a class="active" href="home.html">Home</a></li>
+  <li><a modelAttribute="showNewProdForm" th:href="@{/showNewProdForm}">Új Termék felvitele</a></li>
+  <li><a href="" th:href="@{/index}">Termékek Listája</a></li>
+  <li><a href="" th:href="@{/logout}">Kilépés</a></li>
+</ul>
+	<div >
+	<h1>Áruk listája</h1>
+	
+	
+	
+		<table border="1">
+			<thead>
+				<tr>
+					<th>
+						<a th:href="@{'/page/' + ${currentPage} + '?sortField=termnev&sortDir=' + ${reverseSortDir}}"style="color:white">
+							Termék neve</a>
+					</th>
+					<th>
+					<a th:href="@{'/page/' + ${currentPage} + '?sortField=azonosito&sortDir=' + ${reverseSortDir}}"style="color:white">
+							Azonosító</a>
+					</th>
+					<th>
+					<a th:href="@{'/page/' + ${currentPage} + '?sortField=db&sortDir=' + ${reverseSortDir}}" style="color:white">
+							Darabszám</a>
+					</th>
+					<th>
+					<p  style="color:white">Bruttó Összeg</p>
+					</th>
+					<th>
+					<p  style="color:white">Nettó Összeg</p>
+					</th>
+					<th>
+					<p  style="color:white">Árrés Mértéke</p>
+					</th>
+					<th>
+					<p  style="color:white">Eladási ár</p>
+					</th>
+					<th ><p style="color:white"> Műveletek</p> </th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="prod : ${listProd}">
+				<center>
+					<td th:text="${prod.termnev}" ></td>
+					<td th:text="${prod.azonosito}"></td>
+					<td th:text="${prod.db}"></td>
+					<td th:text="${prod.brutto}"></td>
+					<td th:text="${prod.netto}"></td>
+					<td th:text="${prod.arres}"></td>
+					<td th:text="${prod.arressel}"></td>
+					<td> <a th:href="@{/showFormForUpdate/{id}(id=${prod.id})}" class="btn" style="vertical-align:center">Felülírás</a>
+					<a th:href="@{/Listing/{id}(id=${prod.id})}" class="btn" style="vertical-align:center">Listázás</a>
+					    <a th:href="@{/deleteProd/{id}(id=${prod.id})}" class="btn" style="vertical-align:center">Termék Törlése</a>
+					</td>
+					</center>
+				</tr>
+			</tbody>
+		</table>
+
+		<div th:if = "${totalPages > 1}">
+			<div >
+				<div >
+				<br>
+					Összes termék: [[${totalItems}]] 
+				</div>
+				<div >
+					<span th:each="i: ${#numbers.sequence(1, totalPages)}">
+						<a th:if="${currentPage != i}" th:href="@{'/page/' + ${i}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
+						<span th:unless="${currentPage != i}">[[${i}]]</span>  &nbsp; &nbsp;
+					</span>
+				</div>
+				<div>
+					<a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}" class="btnnextprev">Következő</a>
+					<span th:unless="${currentPage < totalPages}" class="btnnextprev">Következő</span>
+					<a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${totalPages}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}" class="btnnextprev">Előző</a>
+					<span th:unless="${currentPage < totalPages}" class="btnnextprev">Előző</span>
+				</div>
+				
+			</div>
+		</div>
+		<br>
+		<a th:href = "@{/showNewProdForm}" > Termék hozzáadása </a>
+	</div>
+	</center>
+</body>
+</html>

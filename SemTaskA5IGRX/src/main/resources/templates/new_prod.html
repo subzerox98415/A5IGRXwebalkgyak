@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Áru felvitele</title>
+<!-- <link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous"> -->
+	
+</head>
+<style>
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+body
+{
+ animation: 1s ease-out 0s 1 slideInFromLeft;
+  margin:0;
+background-color:#b5b5b5;
+}
+
+ul {
+ animation: 1s ease-out 0s 1 slideInFromLeft;
+  
+  list-style-type: none;
+  width:50%;
+	border-radius:0 0 20px 20px;
+	margin-bottom:30px;
+    margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+
+}
+
+li {
+  float: left;
+    
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 30px 40px;
+  text-decoration: none;
+  transition: 0.7s;
+}
+
+
+
+li a:hover {
+  background-color: #eed520;
+  color:black;
+
+}
+
+.active {
+  background-color: #eed520;
+  Color:black;
+}
+#cont
+{
+width:80%;
+
+padding:70px;
+height:500px;
+background-color:#d8d8d8;
+margin:70px;
+border-radius:25px;
+}
+h2,h1
+{
+left:-50px;
+position:relative;
+	padding-left:70px;
+ animation: 1s ease-out 0s 1 slideInFromLeft;
+}
+hr
+{
+border:2px solid #ffe52d;
+width:50%;
+align:left;
+border-radius:50px;
+}
+p
+{
+padding:15px;
+}
+#input
+{
+padding:20px;
+border:2px solid #eed520;
+border-radius:15px;
+width:30%;
+margin:15px;
+
+}
+.btn {
+  background-color: black;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition: 0.7s;
+}
+
+.btn:hover {
+  background-color: #eed520;
+  border-radius:20px;
+  color: black;
+}
+
+</style>
+
+<body>
+<center>
+<ul>
+  <li><a class="active" href="home.html">Home</a></li>
+  <li><a modelAttribute="showNewProdForm" th:href="@{/showNewProdForm}">Új Termék felvitele</a></li>
+  <li><a href="" th:href="@{/index}">Termékek Listája</a></li>
+  <li><a href="" th:href="@{/logout}">Kilépés</a></li>
+</ul>
+	<br>
+<h1 style="margin-top:30px;" >Áru felvitele</h1>
+<hr>
+<h2>Mentse el az árut</h2>
+</center>
+	
+	
+<center>
+		<form action="#" th:action="@{/saveProd}" th:object="${prod}"
+			method="POST">
+			<input type="text" th:field="*{termnev}"
+				placeholder="Áru neve" id="input"><br>
+				
+				<input type="text" th:field="*{azonosito}"
+				placeholder="Azonositó" id="input"><br>
+				
+				<input type="text" th:field="*{db}"
+				placeholder="Darabszám" id="input"><br>
+				
+				<input type="number" th:field="*{brutto}"
+				placeholder="Bruttó érték" id="input"><br>
+				<input type="number" th:field="*{netto}"
+				placeholder="Nettó érték" id="input"><br>
+				<input type="number" step="0.01" th:field="*{arres}"
+				placeholder="Árrés" id="input"><br>
+				
+				<div class="middle">
+				<button type="submit" class="btn"> Áru elmentése</button>
+		</form>
+		
+		<hr>
+		
+		<a th:href = "@{/index}"> Vissza az áru listához</a>
+		</center>
+	
+	
+</body>
+</html>

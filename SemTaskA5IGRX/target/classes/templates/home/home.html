@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+ xmlns:th="http://www.thymeleaf.org">
+<head>
+ <title>Home</title>
+ <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+ <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+
+  <link rel="stylesheet" th:href="@{/src/main/resources/static/style.css}"/>
+</head>
+
+<style>
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+body
+{
+ animation: 1s ease-out 0s 1 slideInFromLeft;
+  
+background-color:#b5b5b5;
+}
+
+ul {
+ animation: 1s ease-out 0s 1 slideInFromLeft;
+  
+  list-style-type: none;
+  width:50%;
+	border-radius:0 0 20px 20px;
+	
+    margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+
+}
+
+li {
+  float: left;
+    
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 30px 40px;
+  text-decoration: none;
+  transition: 0.7s;
+}
+
+
+
+li a:hover {
+  background-color: #eed520;
+  color:black;
+
+}
+
+.active {
+  background-color: #eed520;
+  Color:black;
+}
+#cont
+{
+width:90%;
+padding:70px;
+height:500px;
+background-color:#d8d8d8;
+margin:70px;
+border-radius:25px;
+}
+h2
+{
+ animation: 1s ease-out 0s 1 slideInFromLeft;
+  
+}
+hr
+{
+border:2px solid #ffe52d;
+width:50%;
+border-radius:50px;
+}
+p
+{
+padding:15px;
+}
+</style>
+<body>
+<center>
+<ul>
+  <li><a class="active" href="home.html">Home</a></li>
+  <li><a modelAttribute="showNewProdForm" th:href="@{/showNewProdForm}">Új Termék felvitele</a></li>
+  <li><a href="" th:href="@{/index}">Termékek Listája</a></li>
+  <li><a href="" th:href="@{/logout}">Kilépés</a></li>
+</ul>
+ <div id="cont" class="container">
+  <h2>Üdv <span th:utext="${userName}"></span>, itt az oldalon.</h2>
+	<hr>
+	<h3>Napi információk</h3>
+<p>
+	Adatbázis feltöltése folyamatban<br>
+	Felhasználók felvezetése folyamatban<br>
+	Vonalkód olvasó fejlesztése folyamatban<br>
+	</p>
+
+ </div>
+ </center>
+</body>
+</html>

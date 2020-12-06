@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Áru nyilvántartás</title>
+
+
+</head>
+<style>
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+body
+{
+ animation: 1s ease-out 0s 1 slideInFromLeft;
+  margin:0;
+background-color:#b5b5b5;
+}
+
+ul {
+ animation: 1s ease-out 0s 1 slideInFromLeft;
+  
+  list-style-type: none;
+  width:50%;
+	border-radius:0 0 20px 20px;
+	margin-bottom:30px;
+    margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+
+}
+
+li {
+  float: left;
+    
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 30px 40px;
+  text-decoration: none;
+  transition: 0.7s;
+}
+
+
+
+li a:hover {
+  background-color: #eed520;
+  color:black;
+
+}
+
+.active {
+  background-color: #eed520;
+  Color:black;
+}
+#cont
+{
+width:80%;
+
+padding:70px;
+height:500px;
+background-color:#d8d8d8;
+margin:70px;
+border-radius:25px;
+}
+h2,h1
+{
+left:-50px;
+position:relative;
+	padding-left:70px;
+ animation: 1s ease-out 0s 1 slideInFromLeft;
+}
+hr
+{
+border:2px solid #ffe52d;
+width:50%;
+align:left;
+border-radius:50px;
+}
+p
+{
+padding:15px;
+}
+#input
+{
+padding:20px;
+border:2px solid #eed520;
+border-radius:15px;
+width:30%;
+margin:15px;
+
+}
+.btn {
+  background-color: black;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition: 0.7s;
+}
+
+.btn:hover {
+  background-color: #eed520;
+  border-radius:20px;
+  color: black;
+}
+
+
+</style>
+<script>
+function arressel(brutto,arres)
+{
+	var b=document.getElementsByClassName(brutto).innerHTML;
+	var arr=document.getElementsByClassName(arres).innerHTML;
+	document.getElementById("arressel").innerHTML=b*arr;
+	alert(b);
+}
+
+</script>
+<body>
+	<div class="container">
+	<center>
+		<h1>Áru nyilvántartó</h1>
+		<hr>
+		<h2>Áru frissítése</h2>
+
+		<form action="#" th:action="@{/saveProd}" th:object="${prod}"
+			method="POST">
+			
+			
+			<input type="hidden" th:field="*{id}" />
+			
+			<label>Terméknév</label><input type="text" id="input" placeholder="Termék neve" th:field="*{termnev}" ><br>
+				
+				<label>Azonosító</label><input type="text" id="input" placeholder="Termék azonosító" th:field="*{azonosito}" ><br>
+				
+			<label>Darabszám</label>	<input type="text" id="input" placeholder="Termék darabszáma" th:field="*{db}" ><br>
+	
+							
+				<label>Bruttó érték</label><input type="text" id="input" class="brutto" placeholder="Bruttó érték" th:field="*{brutto}" ><br>
+				
+				<label>Nettó Érték</label><input type="text" id="input" placeholder="Nettó érték" th:field="*{netto}" ><br>
+				
+				<label>Árrés</label><input type="text" id="input"class="arres" placeholder="Árrés" th:field="*{arres}" ><br>
+				
+				<input type="hidden" id="arressel" placeholder="Árréssel" th:field="*{arressel}" ><br>
+				
+				<button type="submit" id="input"  class="btn" onclick="arressel()"> Áru frissítése</button><br>
+		</form>
+		
+	
+		
+		<hr>
+		
+		<a th:href = "@{/index}"> Vissza a termék listához</a>
+		</center>
+	</div>
+</body>
+</html>
