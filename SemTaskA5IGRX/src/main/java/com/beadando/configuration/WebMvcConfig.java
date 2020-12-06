@@ -6,7 +6,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
- 
+ //bean segítségével psw átkódolása
  @Bean
  public BCryptPasswordEncoder passwordEncoder() {
   BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
